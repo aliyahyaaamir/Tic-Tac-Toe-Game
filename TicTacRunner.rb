@@ -6,18 +6,14 @@ class TicTacRunner
 	class InvalidNumberException < Exception
 	end
 
-	def initialize
-		#@new_board = TicTac_Board.new
-	end
-
 	def tictac_run
 		game = TicTacToe.new
 		players = ["Player 1", "Player 2"]
 		current_player = "Player 1"
 		puts "Welcome to Tic Tac Toe!"
 		counter = 9
-		while (counter != 0)#make 0 to 9 if there are any problems
-			puts game.new_board.hope
+		while (counter != 0)
+			puts game.new_board.draw_board
 			puts "#{current_player} choose your position: "
 			s = gets.chomp
 			begin
@@ -42,11 +38,9 @@ class TicTacRunner
 			rescue InvalidNumberException => e
 				puts e.message
 			end
-			#puts player_input
-			# game.update_hash(player_input, XOS[current_player])
 			check = game.check_board(XOS[current_player])
 			if check == "win"
-				puts game.new_board.hope
+				puts game.new_board.draw_board
 				return puts "You have won!!!"
 			end
 			players.reverse!
